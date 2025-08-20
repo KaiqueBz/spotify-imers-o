@@ -3,12 +3,12 @@ const resultArtist = document.getElementById('result-artist');
 const resultPlaylist = document.getElementById('result-playlists');
 
 function requestApi(searchTerm) {
-    // JSON hospedado no GitHub
-    const url = "https://kaiquebz.github.io/spotify-imers-o/artists.json";
+    // JSON hospedado no GitHub Pages (na pasta api-artists)
+    const url = "https://kaiquebz.github.io/spotify-imers-o/api-artists/artists.json";
 
     fetch(url)
         .then((response) => response.json())
-        .then((result) => displayResults(result, searchTerm))
+        .then((result) => displayResults(result.artists, searchTerm)) // usa result.artists
         .catch((err) => console.error("Erro ao carregar artistas:", err));
 }
 
