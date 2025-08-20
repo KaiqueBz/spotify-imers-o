@@ -4,13 +4,12 @@ const resultPlaylist = document.getElementById('result-playlists');
 
 async function requestApi(searchTerm) {
     try {
-        // carrega o arquivo JSON local hospedado no GitHub Pages
-        const response = await fetch('./artists.json');
+        const response = await fetch('artists.json'); // pega o JSON publicado no Pages
         const data = await response.json();
 
-        // filtra pelo termo pesquisado
+        // filtra ignorando maiúsculas/minúsculas
         const filtered = data.filter(artist =>
-            artist.name.toLowerCase().includes(searchTerm)
+            artist.name.toLowerCase().includes(searchTerm.toLowerCase())
         );
 
         displayResults(filtered, searchTerm);
@@ -50,7 +49,7 @@ function displayResults(result, searchTerm) {
 }
 
 document.addEventListener('input', function () {
-    const searchTerm = searchInput.value.toLowerCase().trim();
+    const searchTerm = searchInput.value.trim();
 
     if (searchTerm === '') {
         resultPlaylist.classList.remove('hidden');
